@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trivia!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        button.correct {
+            background-color: green;
+            color: white;
+        }
+
+        button.incorrect {
+            background-color: red;
+            color: white;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 16px;
+            border: 2px solid white;
+            border-radius: 4px;
+        }
+
+        input.correct {
+            border-color: green;
+            background-color: white;
+            color: black;
+        }
+
+        input.incorrect {
+            border-color: red;
+            background-color: white;
+            color: black;
+        }
+
+        .feedback {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Trivia!</h1>
+    </div>
+
+    <div class="container">
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1: Multiple Choice </h2>
+            <hr>
+            <h3>What is the percentage (%) of people in Ireland who drink alcohol at least once a week in 2024?</h3>
+
+            <button class="choice" data-correct="true">40.6%</button>
+            <button class="choice" data-correct="false">62.1%</button>
+            <button class="choice" data-correct="false">25.8%</button>
+            <button class="choice" data-correct="false">71.2%</button>
+            <p class="feedback"></p>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2: Free Response</h2>
+            <hr>
+            <h3>What is the capital of Ireland?</h3>
+            <input type="text">
+            <button id="check">Submit</button>
+            <p class="feedback"></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // ----- Part 1: Multiple Choice -----
+            let choices = document.querySelectorAll(".choice");
+            choices.forEach(button => {
+                button.addEventListener("click", function() {
+                    // Reset all buttons
+                    choices.forEach(b => b.classList.remove("correct", "incorrect"));
+
+                    let feedback = button.parentElement.querySelector(".feedback");
+
+                    if (button.dataset.correct === "true") {
+                        button.classList.add("correct");
+                        feedback.textContent = "Correct!";
+                        feedback.style.color = "green";
+                    } else {
+                        button.classList.add("incorrect");
+                        feedback.textContent = "Incorrect";
+                        feedback.style.color = "red";
+                    }
+                });
+            });
+
+            // ----- Part 2: Free Response -----
+            document.querySelector("#check").addEventListener("click", function() {
+                let input = this.parentElement.querySelector("input");
+                let feedback = this.parentElement.querySelector(".feedback");
+                let answer = input.value.trim().toLowerCase();
+
+                if (answer === "dublin") {
+                    input.classList.remove("incorrect");
+                    input.classList.add("correct");
+                    feedback.textContent = "Correct!";
+                    feedback.style.color = "green";
+                } else {
+                    input.classList.remove("correct");
+                    input.classList.add("incorrect");
+                    feedback.textContent = "Incorrect";
+                    feedback.style.color = "red";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
