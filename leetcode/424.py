@@ -1,19 +1,17 @@
 def characterReplacement(s: str, k: int) -> int:
+    count = {}
+    maxf = 0
+    l = 0
+    res = 0
 
-    # If we go over s, maybe we should do a variable window, check if we 
+    for r in range(len(s)):
+        count[s[r]] = count.get(s[r], 0) + 1
+        maxf = max(maxf, count[s[r]])
 
-    return 1
+        while (r - l + 1) - maxf > k:
+            count[s[l]] -= 1
+            l+=1
 
-# Input: s = "ABAB", k = 2
-# Output: 4
-# Explanation: Replace the two 'A's with two 'B's or vice versa.
-
-# arr = [A,B]
-
-#               r
-#             l  
-# Input: s = "AABABBA", k = 1
-# Output: 4
-# Explanation: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
-# The substring "BBBB" has the longest repeating letters, which is 4.
-# There may exists other ways to achieve this answer too.
+        res = max(res, r-l+1)
+    
+    return res
