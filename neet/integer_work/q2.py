@@ -1,9 +1,3 @@
-# q2.py — Dynamic Programming Languages CA 1 — Question 2 (25%)
-# Core Python only. No external libs.
-# Run: python q2.py
-#
-# Expects 'alice.txt' to be in the same directory or provide the absolute path.
-
 import os
 import re
 from pathlib import Path
