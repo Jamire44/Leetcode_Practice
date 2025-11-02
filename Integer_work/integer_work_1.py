@@ -1,7 +1,10 @@
-a, b = 545467, 5454382
+nums = 1234
+rev = 0
+n = nums
 
-i = 0
+while n != 0:
+    digit = n % 10
+    rev = rev * 10 + digit
+    n//=10
 
-while i < len(str(a)) and i < len(str(b)) and str(a)[i] == str(b)[i]:
-    i+=1
-print(sum(a)[:i])
+print(n)
