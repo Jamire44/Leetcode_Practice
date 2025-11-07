@@ -55,6 +55,39 @@ def preorder_iter(root: Node):
     return inorder
 
 
+def postorder_one_stack(root: Node):
+    if not root:
+        return []
+    
+    stack = []
+    result = []
+    last_visited = None
+    node = root
+
+    while stack or node:
+        if node:
+            stack.append(node)
+            node = node.left
+
+        else:
+            peek = stack[-1]
+
+            if peek.right and last_visited != peek.right:
+                node = peek.right
+
+            else:
+                result.append(peek.val)
+                last_visited = stack.pop()
+                node = None
+        
+    return result
+            
+
+
+
+
+
+
 def inorder_iter(root: Node):
     inorder = []
     stack = []
