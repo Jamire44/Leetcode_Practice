@@ -76,6 +76,30 @@ def inorder_iter(root: Node):
 #     B   C
 #   D  E    F
 
+def post_two_stacks(root: Node):
+    if not root:
+        return []
+    
+    stack1 = [root]
+    stack2 = []
+    result = []
+
+    while stack1:
+        node = stack1.pop()
+        stack2.append(node)
+
+        if node.left:
+            stack1.append(node.left)
+
+        if node.right:
+            stack1.append(node.right)
+
+    
+    while stack2:
+        result.append(stack2.pop().val)
+    
+    return result
+
 def BFS(root: Node):
     q = deque([root])
     bfs = []
@@ -98,7 +122,7 @@ def BFS(root: Node):
 print(BFS(a))
 print(preorder(a))
 print(inorder_iter(a))
-print(postorder(a))
+print(post_two_stacks(a))
 # print()
 # print()
 # print()
