@@ -12,12 +12,14 @@ c = Node("c")
 d = Node("d")
 e = Node("e")
 f = Node("f")
+g = Node("g")
 
 a.left = b
 a.right = c
 b.left = d
 b.right = e
 c.right = f
+d.right = g
 
 
 def preorder(root: Node):
@@ -84,7 +86,15 @@ def postorder_one_stack(root: Node):
             
 
 
-
+def inorder_iter_two(root: Node):
+    stack = []
+    inorder = []
+    node = root
+    while node or stack:
+        while node:
+            stack.append(node)
+            node = node.left
+        
 
 
 
@@ -105,9 +115,11 @@ def inorder_iter(root: Node):
 
     return inorder
 
-#       A
-#     B   C
-#   D  E    F
+# stack = [] node = A inorder = []
+#         A
+#      B     C
+#    D   E     F
+#   0 G 0 0   0 0 
 
 def post_two_stacks(root: Node):
     if not root:
@@ -152,10 +164,10 @@ def BFS(root: Node):
 #     B   C
 #   D  E    F
 
-print(BFS(a))
-print(preorder(a))
+# print(BFS(a))
+# print(preorder(a))
 print(inorder_iter(a))
-print(post_two_stacks(a))
+# print(post_two_stacks(a))
 # print()
 # print()
 # print()
