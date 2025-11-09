@@ -115,7 +115,9 @@ def inorder_iter(root: Node):
 
     return inorder
 
-# stack = [] node = A inorder = []
+
+
+# stack = [] node = A inorder = [] 
 #         A
 #      B     C
 #    D   E     F
