@@ -71,10 +71,31 @@ def BFS(root: Node):
             q.append(node.right)
     return values        
 
-print(BFS(a))
 
 def postorder_iter(root: Node):
+    if not root:
+        return []
     
+    stack = []
+    values = []
+    last_visited = None
+    node = root
+
+    while node or stack:
+        if node:
+            stack.append(node)
+            node = node.left
+        else:
+            peek = stack[-1]
+            if peek.right and peek.right != last_visited:
+                node = peek.right
+            else:
+                values.append(peek.val)
+                last_visited = stack.pop()
+                node = None
+    return values
+
+print(postorder_iter(a))
 
 #        a
 #     b     c
