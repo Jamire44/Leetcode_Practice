@@ -13,6 +13,7 @@ d = Node("d")
 e = Node("e")
 f = Node("f")
 g = Node("g")
+h = Node("h")
 
 a.left = b
 a.right = c
@@ -20,6 +21,7 @@ b.left = d
 b.right = e
 c.right = f
 d.right = g
+d.left = h
 
 def preorder_iter(root: Node):
     if not root:
@@ -37,6 +39,8 @@ def preorder_iter(root: Node):
             stack.append(node.left)
 
     return values
+
+print(preorder_iter(a))
 
 def inorder_iter(root: Node):
     if not root:
@@ -58,6 +62,7 @@ def inorder_iter(root: Node):
 
     return values
 
+print(inorder_iter(a))
 
 def BFS(root: Node):
     q = deque([root])
@@ -81,7 +86,7 @@ def postorder_iter(root: Node):
     last_visited = None
     node = root
 
-    while node or stack:
+    while stack or node:
         if node:
             stack.append(node)
             node = node.left
@@ -93,6 +98,7 @@ def postorder_iter(root: Node):
                 values.append(peek.val)
                 last_visited = stack.pop()
                 node = None
+
     return values
 
 print(postorder_iter(a))
@@ -100,4 +106,5 @@ print(postorder_iter(a))
 #        a
 #     b     c
 #   d  e   |  f
-#  | g | |   | |
+#  h g | |   | |
+# | |
