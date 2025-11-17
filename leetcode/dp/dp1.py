@@ -8,4 +8,4 @@ def max_points(board, k):
             dp[i] += dp[i+k]
         
     return max(dp)
-
+print(max_points([1,-1,3,5,-2,2],2))
